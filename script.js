@@ -8,11 +8,11 @@ document.querySelector('.guess').value = 23; //we used value because it is an in
 console.log(document.querySelector('.guess').value);
  */
 
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
-const score = 20;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 20;
 let highscore = 0;
 
-const displayMessage = function (message){
+const displayMessage = function (message){  //a function that displays message on the screen
   document.querySelector('.message').textContent = message
 }
 
@@ -39,17 +39,19 @@ document.querySelector('.check').addEventListener('click', function () {  //  ad
   }
 
   //when the player is wrong.
-  else if (guess == !secretNumber) {
+  else if (guess !== secretNumber) {
+
     // applying the DRY principle .DRY = donot repeat yourself
     if (score > 1) {
       // document.querySelector('.message').textContent =
       //   guess > secretNumber ? 'Too high' : 'Too low';
-        displayMessage( guess > secretNumber ? 'Too high' : 'Too low')
+      displayMessage( guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
       score--;
       document.querySelector('.score').textContent = score;
+
     } else {
       //document.querySelector('.message').textContent = 'You Lost';
-      displayMessage('You Lost')
+      displayMessage('💥You Lost')
       document.querySelector('.score').textContent = 0;
     }
   }
